@@ -5,7 +5,6 @@ board = {"A1": " ", "B1": " ", "C1": " ",
          "A2": " ", "B2": " ", "C2": " ",
          "A3": " ", "B3": " ", "C3": " "} # Dictionary containing a blank value tied to a corresponding coordinate, to act as a board
 
-#board == {"A1": " ", "B1": " ", "C1": " ", "A2": " ", "B2": " ", "C2": " ", "A3": " ", "B3": " ", "C3": " "}:
 def isTurnValid(x,y):
     if x == "A" or x == "B" or x == "C":
         if y == "1" or y == "2" or y == "3":
@@ -34,7 +33,7 @@ def winCondition(player):
         return True
     return False
         
-turns_number = 0 # Will go up each turn; Game will end in a tie if it reaches nine.
+turns_number = 0 # Will go up each correct turn; Game will end in a tie after nine turns.
 while True:
     print()
     print("Player",player,", enter your coordinates(Ex: A1, B2):")
@@ -42,18 +41,17 @@ while True:
     
     if isTurnValid(x,y) == True:
         coord = x + y
-        if board[coord] == " ":
-            board[coord] = player
-            turns_number += 1
+        board[coord] = player
+        turns_number += 1
             
-            if winCondition(player) == True:
-                print("Hooray! Player",player,"is the winner!")
-                break
-            elif turns_number == 9:
-                print("The game was unfortunately inconclusive...")
-                break
+        if winCondition(player) == True:
+            print("Hooray! Player",player,"is the winner!")
+            break
+        elif turns_number == 9:
+            print("The game was unfortunately inconclusive...")
+            break
     else:
-        print("Turn is invalid, please try again")
+        print("Turn is invalid, please try again.")
         continue
     
     #Player Alternation
@@ -61,7 +59,3 @@ while True:
         player = "O"
     else:
         player = "X"
-        
-    
-    
-    
